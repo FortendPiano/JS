@@ -25,6 +25,8 @@ for(var i = 0; i < 2; i++){
     && (typeof(twoQestion)) != null && oneQestion != '' && twoQestion != '' 
     && oneQestion.length < 10){
         appData.expenses[oneQestion] = twoQestion; 
+    } else {
+        i--;
     }
 }
 
