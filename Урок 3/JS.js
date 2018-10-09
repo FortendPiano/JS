@@ -17,7 +17,7 @@ let appData = {
     budget: money,
     timeData: time,
     expenses: {},
-    optionalExpenses: [],
+    optionalExpenses: {},
     income: [],
     savings: true,
 
@@ -83,5 +83,5 @@ function chooseOptExpenses() {
         let qestion = prompt("Статья необязательных расходов?", '');
         appData.optionalExpenses[i] = qestion;
     }    
-
+}
 chooseOptExpenses();
