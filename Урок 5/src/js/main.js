@@ -1,0 +1,22 @@
+let startPayment = document.getElementById('start'),
+    budget = document.getElementsByClassName('budget-value'),
+    daybudget = document.getElementsByClassName('daybudget-value'),
+    level = document.getElementsByClassName('level-value'),
+    expenses = document.getElementsByClassName('expenses-value'),
+    optionalexpenses = document.getElementsByClassName('optionalexpenses-value'),
+    income = document.getElementsByClassName('income-value'),
+    monthsavings = document.getElementsByClassName('monthsavings-value'),
+    yearsavings = document.getElementsByClassName('yearsavings-value'),
+    btnToApproveMandatory = document.getElementsByClassName('expenses-item-btn'),
+    btnToApproveOptional = document.getElementsByClassName('optionalexpenses-btn'),
+    btnToCalculate = document.getElementsByClassName('count-budget-btn'),
+    optionalApprove = document.querySelectorAll('.optionalexpenses-item'),
+    chooseIncome = document.querySelector('.choose-income'),
+    checkbox = document.querySelector('#savings'),
+    summa = document.querySelector('#sum'),
+    percent = document.querySelector('#percent'),
+    year = document.querySelector('.year-value'),
+    month = document.querySelector('.month-value'),
+    day = document.querySelector('.day-value');
+
+
