@@ -2,8 +2,8 @@ let part = document.createElement('li'),
     title = document.getElementById('title'),
     ulList = document.querySelector('.menu'),
     li = document.getElementsByClassName('menu-item'),
-    adv = document.querySelectorAll('div .adv'),
-    column = document.querySelectorAll('.column'),
+    adv = document.querySelector('.adv'),
+    column = document.querySelectorAll('.column')[1],
     qestion = document.getElementById('prompt');
 
 //1й пункт задания
@@ -21,12 +21,11 @@ let part = document.createElement('li'),
 
 //4й пункт задания
     
-    //document.div.removeChild(adv);
+    column.removeChild(adv);
 
 //5й пункт задания
     qestion.textContent = prompt('Как вы относитесь к технике Apple?');
     
-
 
     
 
