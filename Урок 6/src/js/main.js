@@ -1,13 +1,13 @@
 let startPayment = document.getElementById('start'),
 
-    budgetValue = document.getElementsByClassName('budget-value'),
-    dayBudget = document.getElementsByClassName('daybudget-value'),
-    level = document.getElementsByClassName('level-value'),
-    expensesValue = document.getElementsByClassName('expenses-value'),
-    optionalExpenses = document.getElementsByClassName('optionalexpenses-value'),
-    incomeValue = document.getElementsByClassName('income-value'),
-    monthSavings = document.getElementsByClassName('monthsavings-value'),
-    yearSavings = document.getElementsByClassName('yearsavings-value'),
+    budgetValue = document.getElementsByClassName('budget-value')[0],
+    dayBudget = document.getElementsByClassName('daybudget-value')[0],
+    level = document.getElementsByClassName('level-value')[0],
+    expensesValue = document.getElementsByClassName('expenses-value')[0],
+    optionalExpenses = document.getElementsByClassName('optionalexpenses-value')[0],
+    incomeValue = document.getElementsByClassName('income-value')[0],
+    monthSavings = document.getElementsByClassName('monthsavings-value')[0],
+    yearSavings = document.getElementsByClassName('yearsavings-value')[0],
 
     expensesItem = document.getElementsByClassName('expenses-item'),
 
@@ -25,9 +25,13 @@ let startPayment = document.getElementById('start'),
     month = document.querySelector('.month-value'),
     day = document.querySelector('.day-value');
 
-let money, time;    
+let money, time;
 
-startPayment.addEventListener('click', function() {
+btnToApproveMandatory.disabled = true;
+btnToApproveOptional.disabled = true;
+btnToCalculate.disabled = true;
+
+startPayment.addEventListener('click', function () {
     time = prompt("Введите дату в формате YYYY-MM-DD", '');
     money = +prompt("Ваш бюджет на месяц?", '');
 
@@ -36,35 +40,48 @@ startPayment.addEventListener('click', function() {
     }
     appData.budget = money;
     appData.timeData = time;
-    budgetValue.textContent = money.toFixed();
+    budgetValue.textContent = money;
     year.value = new Date(Date.parse(time)).getFullYear();
     month.value = new Date(Date.parse(time)).getMonth() + 1;
     day.value = new Date(Date.parse(time)).getDate();
+
+    btnToApproveMandatory.disabled = false;
+    btnToApproveOptional.disabled = false;
+    btnToCalculate.disabled = false;
+
 });
-console.log(budgetValue);
+
 let sum = 0;
 btnToApproveMandatory.addEventListener('click', function () {
-    
-    /*if(expensesItem == '' && expensesItem == null ){
-        btnToApproveMandatory.preventDefault();
-        btnToApproveMandatory.disabled = true;
-        alert('Заполните поле!');
-    };*/
+
+
+
     for (let i = 0; i < expensesItem.length; i++) {
         let oneQestion = expensesItem[i].value,
             twoQestion = expensesItem[++i].value;
 
         if ((typeof (oneQestion)) === 'string' && (typeof (oneQestion)) != null &&
             (typeof (twoQestion)) != null && oneQestion != '' && twoQestion != '' &&
-            oneQestion.length < 10 || expensesItem == '') {
+            oneQestion.length < 10 && expensesItem != '') {
             appData.expenses[oneQestion] = twoQestion;
             sum += +twoQestion;
-        } else {
-            i--;
         }
+        expensesValue.textContent = sum;
     }
-    expensesValue.textContent = sum;
+
+
+    for (let i = 0; i < expensesItem.length; i++) {
+        if (expensesItem[i].value === '' || expensesItem[i].value === null) {
+            btnToApproveMandatory.disabled = true;
+        } else {
+            btnToApproveMandatory.disabled = false;
+
+        }
+
+    }
 });
+
+console.log(expensesItem.value);
 
 btnToApproveOptional.addEventListener('click', function () {
     for (let i = 0; i < optionalApprove.length; i++) {
@@ -92,7 +109,7 @@ btnToCalculate.addEventListener('click', function () {
             level.textContent = "Произошла ошибка!";
         }
     } else {
-        dayBudget.textContent = 'Произошла ошибка!';
+        dayBudget.textContent = 'Фиаско!';
     }
 });
 
